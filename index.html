@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Crime Scene</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Special+Elite&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- =========================================================
+       SCREEN 1 — CASE SELECT (Agency board / landing)
+       ========================================================= -->
+  <section id="screen-cases" class="screen active">
+    <div class="board-wrap">
+      <header class="board-header">
+        <h1 class="title-stamp">CODE CRIME SCENE</h1>
+        <p class="subtitle">A production-incident detective game. Pick a case file to begin.</p>
+        <button id="open-leaderboard-from-cases" class="ghost-btn" type="button">View Leaderboard</button>
+      </header>
+      <div id="case-cards" class="case-cards">
+        <!-- Case cards rendered by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SCREEN 2 — BRIEFING
+       ========================================================= -->
+  <section id="screen-briefing" class="screen">
+    <div class="briefing-wrap">
+      <p class="kicker">CASE FILE</p>
+      <h2 id="briefing-title" class="title-stamp">—</h2>
+      <div class="hud-stats" id="briefing-stats">
+        <!-- HUD stats rendered by app.js -->
+      </div>
+      <div class="briefing-card">
+        <p class="briefing-label">BRIEFING</p>
+        <p id="briefing-body" class="briefing-text">—</p>
+      </div>
+      <div class="briefing-actions">
+        <button id="briefing-back" class="ghost-btn" type="button">Back to Cases</button>
+        <button id="briefing-start" class="primary-btn" type="button">Start Investigation</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SCREEN 3 — EVIDENCE BOARD
+       ========================================================= -->
+  <section id="screen-board" class="screen">
+    <div class="board-stage">
+      <header class="board-header">
+        <p class="kicker">EVIDENCE BOARD</p>
+        <h2 id="board-case-title" class="title-stamp small">—</h2>
+        <p id="board-evidence-counter" class="board-evidence-counter">0 / 4 evidence reviewed</p>
+      </header>
+
+      <div class="board-grid" id="board-grid">
+        <!-- The 4 evidence cards + red-string SVG are rendered by app.js -->
+      </div>
+
+      <div class="board-actions">
+        <button id="board-back" class="ghost-btn" type="button">Back to Briefing</button>
+        <button id="board-accuse" class="primary-btn" type="button">I have a theory</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SCREEN 4 — ACCUSATION
+       ========================================================= -->
+  <section id="screen-accusation" class="screen">
+    <div class="accuse-wrap">
+      <p class="kicker">ACCUSATION</p>
+      <h2 class="title-stamp small">Make your case.</h2>
+
+      <!-- Stage A: pick a root cause -->
+      <div id="accuse-theory" class="accuse-stage">
+        <p class="accuse-prompt">What broke?</p>
+        <div id="theory-options" class="theory-options">
+          <!-- root cause options rendered by app.js -->
+        </div>
+        <div id="theory-stamp" class="theory-stamp" aria-hidden="true"></div>
+        <div class="accuse-actions">
+          <button id="theory-back" class="ghost-btn" type="button">Back to Evidence</button>
+          <button id="theory-lock" class="primary-btn" type="button" disabled>Lock in theory</button>
+        </div>
+      </div>
+
+      <!-- Stage B: write the fix (revealed after correct root cause) -->
+      <div id="accuse-fix" class="accuse-stage hidden">
+        <p class="accuse-prompt">Write the fix.</p>
+        <p id="fix-prompt" class="fix-prompt-text">—</p>
+        <div id="fix-snippet" class="line-snippet">
+          <!-- code snippet rendered by app.js -->
+        </div>
+        <div class="fix-input-row">
+          <input
+            id="fix-input"
+            class="fix-input"
+            type="text"
+            placeholder="Type your fix here…"
+            autocomplete="off"
+            autocapitalize="off"
+            autocorrect="off"
+            spellcheck="false"
+          />
+          <button id="fix-submit" class="primary-btn" type="button">Submit Fix</button>
+        </div>
+        <p id="fix-attempts" class="fix-attempts">attempts: 0</p>
+        <div id="fix-stamp" class="theory-stamp" aria-hidden="true"></div>
+        <div class="accuse-actions">
+          <button id="fix-back" class="ghost-btn" type="button">Back to Cases</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SCREEN 5 — RESULT
+       ========================================================= -->
+  <section id="screen-result" class="screen">
+    <div class="result-wrap">
+      <p class="kicker">CASE CLOSED</p>
+      <h2 id="result-case-title" class="title-stamp small">—</h2>
+      <div id="result-rank" class="rank-badge">—</div>
+
+      <div class="score-breakdown" id="score-breakdown">
+        <!-- rendered by app.js -->
+      </div>
+
+      <div class="explanation-card">
+        <p class="briefing-label">EXPLANATION</p>
+        <p id="explanation-body" class="briefing-text">—</p>
+      </div>
+
+      <div class="result-actions">
+        <input
+          id="result-name"
+          class="name-input"
+          type="text"
+          maxlength="20"
+          placeholder="Detective name (max 20)"
+          autocomplete="off"
+        />
+        <button id="result-save" class="primary-btn" type="button">Save Score</button>
+        <button id="result-back" class="ghost-btn" type="button">Back to Cases</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SCREEN 6 — LEADERBOARD
+       ========================================================= -->
+  <section id="screen-leaderboard" class="screen">
+    <div class="lb-wrap">
+      <p class="kicker">HALL OF DETECTIVES</p>
+      <h2 class="title-stamp small">Leaderboard</h2>
+
+      <div class="lb-table" id="lb-table">
+        <!-- rows rendered by app.js -->
+      </div>
+
+      <div class="lb-actions">
+        <button id="lb-back" class="ghost-btn" type="button">Back to Cases</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       EVIDENCE MODAL (overlays the board screen)
+       ========================================================= -->
+  <div id="evidence-modal" class="modal hidden" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-frame" id="modal-frame">
+      <header class="modal-head">
+        <p class="kicker" id="modal-kind">EVIDENCE</p>
+        <h3 class="title-stamp small" id="modal-title">—</h3>
+        <button id="modal-close" class="modal-close" type="button" aria-label="Close evidence">&times;</button>
+      </header>
+      <div class="modal-body" id="modal-body">
+        <!-- evidence body rendered by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       SCRIPTS — order matters (no modules, per plan)
+       ========================================================= -->
+  <script src="js/cases.js"></script>
+  <script src="js/scoring.js"></script>
+  <script src="js/leaderboard.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
