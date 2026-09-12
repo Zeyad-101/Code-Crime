@@ -10,7 +10,7 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](#tech-stack)
 [![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://code-crime.vercel.app/)
 
-[**▶ Play the game**](https://code-crime.vercel.app/) · [Report a bug case](https://github.com/Zeyad-101/Code-Crime/issues) · [Leaderboard](https://code-crime.vercel.app/)
+[**▶ Play the game**](https://code-crime.vercel.app/) · [Report a bug case](https://github.com/Zeyad-101/Code-Crime/issues)
 
 </div>
 
